@@ -15,27 +15,27 @@
         		<h1>Kareem St.louis Project 1!</h1>
 				<h2>QUESTION 1.2)</h2>
 				
-<p>#include<iostream><br>
-#include<string> <br>
-#include<sstream> <br>
-#include<vector> <br>
+<p>#include iostream <br>
+#include string <br>
+#include sstream <br>
+#include vector <br>
 
 using namespace std;<br>
 int main(){ <br>
 	int j = 0,x=0; <br>
 	string bob,cand,space=" "; <br>
-	cout<<"PLease type in a word followed by a space then press enter"<<endl; <br>
-	cout<<"type -1 when your done entering words."<<endl; <br>
-	cin>>cand; <br>
+	cout<<"PLease type in a word followed by a space then press enter"<<endl;<br>
+	cout<<"type -1 when your done entering words."<<endl;<br>
+	cin>>cand;<br>
 	while(cand!="-1"){ <br>
 		bob = (bob+space+cand); <br>
 		x++; <br>
 		cin>>cand; <br>
-	}
+	}<br><br>
    
 
 	vector<string> list(x); <br>
-	istringstream iss(bob); <br>
+	istringstream iss(bob); <br><br>
 	
 
 	do{ <br>
@@ -54,43 +54,42 @@ return 0; <br>
 } <br>
 
 						<h2>(QUESTION 1.3)</h2>				
-#include <iostream>
-using namespace std;
+#include iostream <br>
+using namespace std; <br><br>
 
-void stock(int  credit, int items[]){
-int hold =0,itr=0;
-for(int i = 0; i<5; i++){
-	    //cout<<"check1 i"<<i<<endl;
-        itr=i;
-        for(int j = (itr+1); j<5; j++){
-              hold=(items[i]+items[j]);
-            if(credit==hold){
-                cout<<"store credit purchases available for $"<< credit <<endl;
-
-                return;
-                }
-        }
-	}
-}
-
-
-int main(){
-	int credit=0,x=0,y=0;
-	cout<<"How many items do we have in stock?"<<endl;
-	cin>>x;
-	int items[x];
-	cout<<"What are their prices?"<<endl;
-	for(int g=0; g<x;g++){
-		cin>>items[g];
-	}
-	cout<<"Welcome to Shady Steve's"<<endl;
-	cout<<"How much store credit do you have? "<<endl;
-	cin>>credit;
-    stock(credit,items);
+void stock(int  credit, int items[], int x){ <br>
+int hold =0,itr=0;<br>
+for(int i = 0; i<x; i++){<br>
+	    
+        itr=i;<br>
+        for(int j = (itr+1); j<x; j++){<br>
+              hold=(items[i]+items[j]);<br>
+            if(credit==hold){<br>
+                cout<<"store credit purchases available for $"<< credit <<endl;<br>
+                return;<br>
+                }<br>
+        }<br>
+	}<br>
+}<br>
 
 
+int main(){<br>
+	int credit=0,x=0,y=0;<br>
+	cout<<"How many items do we have in stock?"<<endl;<br>
+	cin>>x;<br>
+	int items[x];<br>
+	cout<<"What are their prices?"<<endl;<br>
+	for(int g=0; g<x;g++){<br>
+		cin>>items[g];<br>
+	}<br>
+	cout<<"Shady Steve is happy your a patron of his store"<<endl;<br>
+	cout<<"How much store credit do you have? "<<endl;<br>
+	cin>>credit;<br>
+    stock(credit,items,x);<br>
 
-return 0;
+
+
+return 0;<br>
 }
 </a></p>
     		</div><!-- /.blurb -->
