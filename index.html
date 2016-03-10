@@ -65,7 +65,7 @@ for(int i = 0; i<x; i++){<br>
         for(int j = (itr+1); j<x; j++){<br>
               hold=(items[i]+items[j]);<br>
             if(credit==hold){<br>
-                cout<<"store credit purchases available for $"<< credit <<endl;<br>
+                cout<<"store credit purchases available for $"<< credit <<endl; <br>
                 return;<br>
                 }<br>
         }<br>
@@ -75,12 +75,12 @@ for(int i = 0; i<x; i++){<br>
 
 int main(){<br>
 	int credit=0,x=0,y=0;<br>
-	cout<<"How many items do we have in stock?"<<endl;<br>
-	cin>>x;<br>
+	cout<<"How many items do we have in stock?"<<endl; <br>
+	cin>>x; <br>
 	int items[x];<br>
 	cout<<"What are their prices?"<<endl;<br>
-	for(int g=0; g<x;g++){<br>
-		cin>>items[g];<br>
+	for(int g=0; g<x;g++){ <br>
+		cin>>items[g]; <br>
 	}<br>
 	cout<<"Shady Steve is happy your a patron of his store"<<endl;<br>
 	cout<<"How much store credit do you have? "<<endl;<br>
@@ -90,7 +90,7 @@ int main(){<br>
 
 
 return 0;<br>
-}
+}<br>
 </a></p>
     		</div><!-- /.blurb -->
 		</div><!-- /.container -->
