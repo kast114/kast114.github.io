@@ -24,36 +24,36 @@ using namespace std;<br>
 int main(){ <br>
 	int j = 0,x=0; <br>
 	string bob,cand,space=" "; <br>
-	cout<<"PLease type in a word followed by a space then press enter"<<endl;
-	cout<<"type -1 when your done entering words."<<endl;
-	cin>>cand;
-	while(cand!="-1"){
-		bob = (bob+space+cand);
-		x++;
-		cin>>cand;
+	cout<<"PLease type in a word followed by a space then press enter"<<endl; <br>
+	cout<<"type -1 when your done entering words."<<endl; <br>
+	cin>>cand; <br>
+	while(cand!="-1"){ <br>
+		bob = (bob+space+cand); <br>
+		x++; <br>
+		cin>>cand; <br>
 	}
-    //cout<<x<<endl;
+   
 
-	vector<string> list(x);
-	istringstream iss(bob);
-	//cout<<bob<<" "<<endl;
+	vector<string> list(x); <br>
+	istringstream iss(bob); <br>
+	
 
-	do{
-			//cout<<"Start of loop"<<endl;
-			iss>>list[j];
-			cout<<list[j]<<endl<<endl;
-			j++;
-	}while(j<x);
-	int i = list.size();
-	//cout << i << endl;
-	i-=1;
-	while(i>=0){
-	cout<<list[i]<<endl;
-	i--;}
-return 0;
-}
+	do{ <br>
+			
+			iss>>list[j]; <br>
+			cout<<list[j]<<endl<<endl; <br>
+			j++; <br>
+	}while(j<x); <br>
+	int i = list.size(); <br>
+	//cout << i << endl; <br>
+	i-=1; <br>
+	while(i>=0){ <br>
+	cout<<list[i]<<endl; <br>
+	i--;} <br>
+return 0; <br>
+} <br>
 
-						QUESTION 1.3)				
+						<h2>(QUESTION 1.3)</h2>				
 #include <iostream>
 using namespace std;
 
