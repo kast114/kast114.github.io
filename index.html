@@ -22,34 +22,48 @@
 
 using namespace std;<br>
 int main(){ <br>
-	int j = 0,x=0; <br>
-	string bob,cand,space=" "; <br>
-	cout<<"PLease type in a word followed by a space then press enter"<<endl;<br>
-	cout<<"type -1 when your done entering words."<<endl;<br>
-	cin>>cand;<br>
-	while(cand!="-1"){ <br>
-		bob = (bob+space+cand); <br>
+	int j = 0,k=0,x=0,cas=0,a=0,holder=0; <br>
+	string bob,cand,buffer; <br>
+	vector<string> temp;
+	<br>
+	<br>
+	cout<<"How many cases?"<<endl;<br>
+	cin>>cas;<br>
+	vector<string> caselist(cas); <br>;
+	cout<<"Enter test cases"<<endl;<br>
+	for(int k=0; k<cas; k++){ <br>
+		getline(cin,bob,'.'); <br>
+		caselist[k]=bob;<br>
+		holder=k<br>
+		}<br><br><br>
+		
+	for(int l=0; l<=holder; l++){<br>
+	cand=caselist[l];<br>
+	istringstream isb(cand);<br>
+	while(isb){
+		isb>>buffer; <br>
+		temp.push_back(buffer);<br>
 		x++; <br>
-		cin>>cand; <br>
-	}<br><br>
+	<br><br>
    
 
 	vector<string> list(x); <br>
-	istringstream iss(bob); <br><br>
+	istringstream iss(cand); <br><br>
 	
 
 	do{ <br>
 			
 			iss>>list[j]; <br>
-			cout<<list[j]<<endl<<endl; <br>
+
 			j++; <br>
 	}while(j<x); <br>
 	int i = list.size(); <br>
-	//cout << i << endl; <br>
+
 	i-=1; <br>
 	while(i>=0){ <br>
 	cout<<list[i]<<endl; <br>
 	i--;} <br>
+	}<br>
 return 0; <br>
 } <br>
 
