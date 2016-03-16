@@ -68,19 +68,41 @@ return 0; <br>
 } <br>
 
 						<h2>(QUESTION 1.3)</h2>				
-#include iostream <br>
-using namespace std; <br><br>
+#include iostream  <br>
+#include string  <br>
+#include sstream <br>
+#include vector <br>
+using namespace std;<br>
+<br>
+<br>
+class store {<br>
+<br>
+    int cred;<br>
+    int arrsize;<br>
+    string prices;<br>
+public:<br>
+    void setvals(int credit, int si, string cost){<br>
+        cred=credit;<br>
+        arrsize=si;<br>
+        prices=cost;<br>
+    }<br>
+     int getcred(){return cred;}<br>
+     int getsize(){return arrsize;}<br>
+     string getcost(){return prices;}<br>
+};<br>
 
-void stock(int  credit, int items[], int x){ <br>
-int hold =0,itr=0;<br>
-for(int i = 0; i<x; i++){<br>
-	    
+
+int stock(int  credit, int items[]){<br>
+int hold =0,itr=0,res=0;<br>
+    <br>
+for(int i = 0; i<5; i++){<br>
+	    //cout<<"check1 i"<<i<<endl;<br>
         itr=i;<br>
-        for(int j = (itr+1); j<x; j++){<br>
+        for(int j = (itr+1); j<5; j++){<br>
               hold=(items[i]+items[j]);<br>
             if(credit==hold){<br>
-                cout<<"store credit purchases available for $"<< credit <<endl; <br>
-                return;<br>
+                return items[i];<br>
+<br>
                 }<br>
         }<br>
 	}<br>
@@ -88,23 +110,54 @@ for(int i = 0; i<x; i++){<br>
 
 
 int main(){<br>
-	int credit=0,x=0,y=0;<br>
-	cout<<"How many items do we have in stock?"<<endl; <br>
-	cin>>x; <br>
-	int items[x];<br>
-	cout<<"What are their prices?"<<endl;<br>
-	for(int g=0; g<x;g++){ <br>
-		cin>>items[g]; <br>
+	int credit=0,sizes=0,y=0,cas=0,result=0,creds=0,answ=0;<br>
+	string line,test,buffer,conv;<br>
+	vector<string> tester;<br>
+	cout<<"How many cases?"<<endl;<br>
+	cin>>cas;<br>
+	store obj[cas];<br>
+	for(int k=0;k<cas;k++){<br>
+        cout<<"Store credit? "<<endl;<br>
+        cin>>credit;<br>
+        cout<<"# of items? "<<endl;<br>
+        cin>>sizes;<br>
+        cout<<"Prices "<<endl;<br>
+        getline(cin,line);<br>
+        obj[k].setvals(credit,sizes,line);<br>
+    }<br>
+
+    for(int j=0;j<cas;j++){<br>
+	test=obj[j].getcost();<br>
+	y=obj[j].getsize();<br>
+	string items[y];<br>
+	int cont=0;<br>
+<br>
+	istringstream iss(test);<br>
+	while(iss){<br>
+        iss>>buffer;<br>
+ <br>
+        items[cont]=buffer;<br>
+      <br>
+        cont++;<br>
 	}<br>
-	cout<<"Shady Steve is happy your a patron of his store"<<endl;<br>
-	cout<<"How much store credit do you have? "<<endl;<br>
-	cin>>credit;<br>
-    stock(credit,items,x);<br>
-
-
-
+<br>
+    int arr[y];<br>
+    for(int f=0;f<y;f++){<br>
+        conv=items[f];<br>
+        //cout<<"f "<<items[f]<<endl;<br>
+        stringstream(conv)>>result;<br>
+        arr[f] = result;<br>
+    }<br>
+    creds=obj[j].getcred();<br>
+    answ=stock(creds,arr);<br>
+    cout<<answ<<endl;<br>
+<br>
+    creds-=answ;<br>
+    cout<<answ<<" "<<creds<<endl;<br>
+    }<br>
 return 0;<br>
 }<br>
+
 </a></p>
     		</div><!-- /.blurb -->
 		</div><!-- /.container -->
