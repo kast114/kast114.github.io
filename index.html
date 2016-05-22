@@ -160,6 +160,231 @@ int main(){<br>
 return 0;<br>
 }<br>
 
+			<h1>Kareem St.louis Project 2!</h1>
+				<h2>RobotTrust</h2>
+
+import java.io.*;  <br>
+import java.lang.*; <br>
+import javax.swing.JButton; <br>
+import javax.swing.JFrame; <br>
+import javax.swing.JOptionPane; <br>
+<br>
+class RunnableDemo implements Runnable { <br>
+   private Thread t; <br>
+   private String threadName; <br>
+   private boolean[] orangehall= new boolean[101]; <br>
+   private boolean[] bluehall= new boolean[101]; <br>
+   private int oranbot = 0; <br>
+   private int bluebot = 0; <br>
+   private int buttons =0; // total number of buttons to be pressed <br>
+   private static int movesmade =0;// current number of buttons pressed <br>
+   private static int othermoves=0;// same as above but for a color <br>
+   private int ohold=0; <br>
+   private int bhold=0; <br>
+   private String[] colorder;<br>
+   private int [] border;<br>
+   private int [] oorder;<br>
+   private int rcase = 0;<br>
+<br>
+   RunnableDemo( String name, String[] corder, int[] oranorder, int[] blueorder,int moves,int round){ <br>
+       threadName = name; <br>
+       buttons = moves; <br>
+       rcase = round; <br>
+       border = new int[moves]; <br>
+       oorder = new int[moves]; <br>
+       colorder = new String[moves]; <br>
+       System.arraycopy(corder, 0, colorder, 0, corder.length);<br>
+       System.arraycopy(oranorder,0,oorder,0,oranorder.length);<br>
+       System.arraycopy(blueorder,0,border,0,blueorder.length);<br>
+       System.out.println("Creating " +  threadName );<br>
+       <br>
+       <br>
+   }<br>
+   public String getname(){return threadName;}<br>
+   public int getrcase(){return rcase;}<br>
+   public int getopos(int x){return oorder[x];}<br>
+   public int getobot(){return oranbot;}<br>
+   public int getmm(){return movesmade;}<br>
+   public int getmd(){return othermoves;}<br>
+   public int getohold(){return ohold;}<br>
+   public void incobot(){oranbot++;<br>
+			//System.out.println("Orange bot moves up one. ");<br>
+}<br>
+   public void decobot(){oranbot--;<br>
+			//System.out.println("Orange bot moves back one. ");<br>
+}<br>
+   public String getco(int x){return colorder[x];}<br>
+   public void opush(int x){orangehall[x] = true;<br>
+			//System.out.println("Orange Button " + x + " pressed! ");<br>
+}<br>
+   public void incmm(){movesmade++;}<br>
+   public void incmd(){othermoves++;}<br>
+   public void incohold(){ohold++;}<br>
+
+   public int getbpos(int x){return border[x];}<br>
+   public int getbbot(){return bluebot;}<br>
+   public int getbhold(){return bhold;}<br>
+   public void incbbot(){bluebot++;<br>
+			//System.out.println("Blue moves up one. ");<br>
+}<br>
+   public void decbbot(){bluebot--;<br>
+			//System.out.println("Blue moves back. ");<br>
+}<br>
+   public void bpush(int x){bluehall[x] = true;<br>
+			//System.out.println("Blue button " + x + " pressed! ");<br>
+}<br>
+   public void incbhold(){bhold++;}<br>
+<br>
+   public int getbut(){return buttons;}<br>
+<br>
+<br>
+   public synchronized void run() {<br>
+      System.out.println("Running " +  threadName );<br>
+      try {<br>
+	 long startTime = System.currentTimeMillis();<br>
+	 Thread.sleep(1000);	<br>
+	 int test=0;<br>
+	 while(getmm()<getbut()){<br>
+	  if(threadName.equals("Orange")){<br>
+		if(getobot()<getopos(getohold())){incobot();}<br>
+	          else if(getobot()>getopos(getohold())){decobot();}<br>
+			else if(getobot()==getopos(getohold()) && getco(getmm()).equals("O"))<br>
+					{opush(getobot());<br>
+					incmm();<br>
+					incohold();<br>
+					Thread.sleep(1000);}<br>
+				else if(getopos(getohold())==0){<br>
+					//System.out.println(threadName + " waits ");<br>
+					Thread.sleep(1000);} <br>
+				else{<br>
+					//System.out.println(threadName + " waits ");<br>
+					Thread.sleep(1000);} <br>
+         
+            // Let the thread sleep for a while.<br>
+            Thread.sleep(1000);<br>
+         }//end of orange<br>
+
+	  if(threadName.equals("Blue")){<br>
+		if(getbbot()<getbpos(getbhold())){incbbot();}<br>
+		else if(getbbot()>getbpos(getbhold())){decbbot();}<br>
+			else if(getbbot()==getbpos(getbhold()) && getco(getmm()).equals("B"))<br>
+					{bpush(getbbot());<br>
+					incmm();<br>
+					incbhold();<br>
+					Thread.sleep(1000);}<br>
+				else if(getbpos(getbhold())==0){<br>
+					//System.out.println(threadName + " waits ");<br>
+					Thread.sleep(1000);} <br>
+				else{<br>
+					//System.out.println(threadName + " waits ");<br>
+					Thread.sleep(1000);} <br>
+            // Let the thread sleep for a while.<br>
+            Thread.sleep(1000);<br>
+<br>
+}//end of blue if thread<br>
+}//end of while <br>
+	long estimatedTime = System.currentTimeMillis() - startTime;<br>
+	//System.out.println("Case#"+1+", "+estimatedTime);<br>
+	printme(getrcase(),estimatedTime);<br>
+     } // end of try<br>
+    catch (InterruptedException e) {<br>
+         System.out.println("Thread " +  threadName + " interrupted.");<br>
+     }<br>
+     System.out.println("Thread " +  threadName + " exiting.");<br>
+   }<br>
+   public void start ()<br>
+   {<br>
+      System.out.println("Starting " +  threadName );<br>
+      if (t == null)<br>
+      {<br>
+         t = new Thread (this, threadName);<br>
+         t.start ();<br>
+      }<br>
+   }<br>
+   public void printme(int x, long d){<br>
+	if(getname().equals("Orange")){	<br>
+	System.out.println("Case#"+x+", "+(d/=1000));<br>
+	JOptionPane.showMessageDialog( null, "Case#"+x+", "+(d/=1000) );<br>
+	}<br>
+}<br>
+}<br>
+public class RobotTest{<br>
+public static void seq(String line, int rcase){<br>
+	String[] tokens = line.split(" ");<br>
+	int length = tokens.length;<br>
+	int itr = 0;<br>
+	int bitr=0;<br>
+	int oitr=0;<br>
+	String temp = null, temp2 = null;<br>
+	String token = tokens[0];<br>
+	int nummoves = Integer.parseInt(token);<br>
+	String[] Corder = new String[nummoves];<br>
+	int[] blueorder = new int[nummoves];<br>
+	int[] oranorder = new int[nummoves];<br>
+   	   for(int j=1;j<length;j++){<br>
+		temp = tokens[j];<br>
+		Corder[itr] = temp;<br>
+		System.out.println(Corder[itr]+" ");<br>
+		j++;<br>
+		temp2 = tokens[j];<br>
+		if(temp.equals("O")||temp.equals("o")){<br>
+			int ortemp = Integer.parseInt(temp2);<br>
+			oranorder[oitr]=ortemp;<br>
+                        oitr++;<br>
+			System.out.println(oranorder[itr]+" ");<br>
+		}<br>
+		if(temp.equals("B")||temp.equals("b")){<br>
+			int bltemp = Integer.parseInt(temp2);<br>
+			blueorder[bitr]=bltemp;<br>
+                        bitr++;<br>
+			System.out.println(blueorder[itr]+" ");<br>
+		}<br>
+  
+		itr++;<br>
+				}<br>	 
+	//long startTime = System.currentTimeMillis();<br>
+	RunnableDemo R1 = new RunnableDemo( "Orange", Corder, oranorder, blueorder,nummoves,rcase);<br>
+        R1.start();<br>
+      
+        RunnableDemo R2 = new RunnableDemo( "Blue", Corder ,oranorder,blueorder,nummoves,rcase);<br>
+        R2.start();<br>
+	//long estimatedTime = System.currentTimeMillis() - startTime;<br>
+	//return estimatedTime;<br>
+}<br>
+
+public static void main(String [] args){<br>
+	  String filename = "temp.txt";<br>
+	  String line = null;<br>
+    try{<br>
+	  FileReader fileReader = new FileReader(filename);<br>
+	  BufferedReader bufferedReader = new BufferedReader(fileReader);<br>
+	  line = bufferedReader.readLine();<br>
+	  int numcases = Integer.parseInt(line);<br>
+	  String[] cases = new String[numcases];<br>
+	  for(int i = 0; i<numcases;i++){<br>
+		line = bufferedReader.readLine();<br>
+		cases[i]=line;<br>
+		}<br>
+	  bufferedReader.close();<br>
+	  long array[] = new long[numcases];<br>
+	for(int hi = 0; hi<numcases; hi++)<br>
+		{int kut = (hi+1);  <br>
+		seq(cases[hi],kut);}<br>
+	 }<br>
+catch(FileNotFoundException ex) {<br>
+            System.out.println(<br>
+                "Unable to open file '" + <br>
+                filename + "'");              <br>  
+        }<br>
+      catch(IOException ex) {<br>
+            System.out.println(<br>
+                "Error reading file '"<br> 
+                + filename + "'");        <br>          
+            // Or we could just do this: <br>
+            // ex.printStackTrace();<br>
+        }//endoftrycatch<br>
+}<br>
+}<br>
 </a></p>
     		</div><!-- /.blurb -->
 		</div><!-- /.container -->
